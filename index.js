@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import Minimist from "minimist";
 import Xcode from "xcode-node";
 
