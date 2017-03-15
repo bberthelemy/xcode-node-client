@@ -54,6 +54,19 @@ if (argv['set-headers-path']) {
     }
 }
 
+if (argv['set-preprocessor-macros-specific']) {
+    if (typeof argv['set-preprocessor-macros-specific'] == "string") {
+	const [target, conf, macros] = argv['set-preprocessor-macros-specific'].split("->")
+	project.configuration.setPreprocessorMacrosTargetConfiguration(target, conf, macros);
+    }
+    else {
+	for (let i = 0; i < argv['set-preprocessor-macros-specific'].length; i++) {
+	    const [target, conf, macros] = argv['set-preprocessor-macros-specific'][i].split("->")
+	    project.configuration.setPreprocessorMacrosTargetConfiguration(target, conf, macros);
+	}
+    }
+}
+
 if (argv['set-build-phase-script']) {
     if (typeof argv['set-build-phase-script'] == "string") {
         const [target, script, name] = argv['set-build-phase-script'].split("->")
