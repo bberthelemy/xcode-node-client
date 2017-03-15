@@ -54,6 +54,19 @@ if (argv['set-headers-path']) {
     }
 }
 
+if (argv['set-build-phase-script']) {
+    if (typeof argv['set-build-phase-script'] == "string") {
+        const [target, script, name] = argv['set-build-phase-script'].split("->")
+        project.buildphase.addScript(target, script, name);
+    }
+    else {
+        for (let i = 0; i < argv['set-build-phase-script'].length; i++) {
+            const [target, script, name] = argv['set-build-phase-script'][i].split("->")
+            project.buildphase.addScript(target, script, name);
+        }
+    }
+}
+
 if (argv['output'] && typeof argv['output'] == "string") {
     project.save(argv['output'])
 }
