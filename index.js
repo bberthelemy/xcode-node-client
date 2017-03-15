@@ -57,12 +57,12 @@ if (argv['set-headers-path']) {
 if (argv['set-preprocessor-macros-specific']) {
     if (typeof argv['set-preprocessor-macros-specific'] == "string") {
 	const [target, conf, macros] = argv['set-preprocessor-macros-specific'].split("->")
-	project.configuration.setPreprocessorMacrosTargetConfiguration(target, conf, macros);
+        project.configuration.setPreprocessorMacrosTargetConfiguration(target, conf, macros.split(","));
     }
     else {
 	for (let i = 0; i < argv['set-preprocessor-macros-specific'].length; i++) {
 	    const [target, conf, macros] = argv['set-preprocessor-macros-specific'][i].split("->")
-	    project.configuration.setPreprocessorMacrosTargetConfiguration(target, conf, macros);
+	    project.configuration.setPreprocessorMacrosTargetConfiguration(target, conf, macros.split(","));
 	}
     }
 }
