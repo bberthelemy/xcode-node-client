@@ -41,6 +41,23 @@ if (argv['set-user-defined']) {
     }
 }
 
+if (argv['set-user-defined-configuration']) {
+    if (typeof argv['set-user-defined-configuration'] == "string") {
+        const [conf, key, value] = argv['set-user-defined-configuration'].split("->")
+        project.getTargets().forEach((tg) => {
+            project.configuration.setUserDefinedTargetConfiguration(tg.name, conf, key, value);
+        });
+    }
+    else {
+        for (let i = 0; i < argv['set-user-defined-configuration'].length; i++) {
+            const [conf, key, value] = argv['set-user-defined-configuration'][i].split("->")
+            project.getTargets().forEach((tg) => {
+                project.configuration.setUserDefinedTargetConfiguration(tg.name, conf, key, value);
+            });
+        }
+    }
+}
+
 if (argv['set-headers-path']) {
     if (typeof argv['set-headers-path'] == "string") {
         project.getTargets().forEach((tg) => {
